@@ -1,2 +1,3 @@
-# vfu
-Code written for classes VFU
+# Code written for classes in VFU
+
+Used for sharing and education.
