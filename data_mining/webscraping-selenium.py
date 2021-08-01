@@ -3,19 +3,16 @@ import pandas as pd
 from selenium.webdriver.chrome.options import Options
 import re
 
-
 chrome_options = Options()
 chrome_options.add_experimental_option('prefs', {'profile.managed_default_content_settings.javascript': 2})
 driver = webdriver.Chrome('chromedriver', options=chrome_options)
-base_url = 'https://bazar.bg/obiavi/gradski-velosipedi/varna?condition=2'
 url = 'https://bazar.bg/obiavi/gradski-velosipedi/varna?condition=2'
 css_selector = '.awrapper .listItemContainer .listItemLink'
 driver.get(url)
-driver.implicitly_wait(100)
+driver.implicitly_wait(1)
 count_pages = 5
 data = []
 for page in range(count_pages):
-    cur_page = page + 1
     items = driver.find_elements_by_css_selector(css_selector)
     i = 0
     for item in items:
@@ -28,13 +25,14 @@ for page in range(count_pages):
         price = int(price)
         image = item.find_element_by_css_selector('img.cover').get_attribute('src')
         if title and price:
-            data.append([title, price, 'https:' + image])
-    link = driver.find_element_by_css_selector('.paging a.next')
-    if link:
+            data.append([title, price, image])
+    try:
+        link = driver.find_element_by_css_selector('.paging a.next')
         link.click()
+    except:
+        break
 
 driver.quit()
-
 
 df = pd.DataFrame(data, columns=['title', 'price', 'image'])
 df.sort_values(by='price', inplace=True)
