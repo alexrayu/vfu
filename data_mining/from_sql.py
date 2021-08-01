@@ -103,9 +103,9 @@ def terms_field_values(cursor, nid, field_name):
     return result
 
 
-cnx = connection.MySQLConnection(user='drupal', password='drupal',
+cnx = connection.MySQLConnection(user='uname', password='upasswd',
                                  host='127.0.0.1',
-                                 database='ere-src')
+                                 database='dbname')
 cursor = cnx.cursor()
 query = 'SELECT nid, title, status, created, changed, langcode FROM node_field_data WHERE type="company"'
 cursor.execute(query)
