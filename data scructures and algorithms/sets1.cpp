@@ -7,7 +7,8 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+int main()
+{
   set <int> sl;
 
   sl.insert(3);
