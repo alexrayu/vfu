@@ -1,3 +1,8 @@
+/**
+ * @brief Sets example 1.
+ * @see "https://www.cplusplus.com/reference/set/set/"
+ */
+
 #include <set>
 #include <iostream>
 using namespace std;
