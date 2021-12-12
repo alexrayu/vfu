@@ -14,8 +14,9 @@
  {
    unsigned i;  
    for (i = 0; i < n; i++) {
-     printf("\n");
+     printf("%u", a[i] + 1);
    }
+   printf("\n");
  }
 
  void permut(unsigned k)
